@@ -66,10 +66,10 @@ export const useStyle = (w, h, scale) => {
             }
         },
         lineStyle(i) {
-            const top = `${h - hSize}px`
-            const left = `${w / 2 - size / 2}px`
+            const top = `${h - hSize * sf1}px`
+            const left = `${w / 2 - size / 2 + size * i}px`
             const width = `${Math.min(w, h) / 60}px`
-            const height = `${hSize}px`
+            const height = `${hSize * sf1}px`
             return {
                 top, 
                 left, 
