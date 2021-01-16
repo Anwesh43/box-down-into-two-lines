@@ -7,7 +7,7 @@ const Container = (props) => {
     const {w, h} = useDimension()
     return (
         <React.Fragment>
-            <Container w = {w} h = {h} scale  = {scale} onClick = {start}/>
+            <BoxDownTwoLine w = {w} h = {h} scale  = {scale} onClick = {start}/>
         </React.Fragment>
     )
 }

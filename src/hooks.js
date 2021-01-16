@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react'
 
 const delay = 20 
-const scGap = 0.02 
 const parts = 3 
+const scGap = 0.02 / parts 
 const hSizeFactor = 18
 const wFactor = 9
 
@@ -18,6 +18,11 @@ export const useAnimatedScale = () => {
                 const interval = setInterval(() => {
                     currScale += scGap 
                     setScale(currScale)
+                    if (currScale > 1) {
+                        setScale(0)
+                        setAnimated(false)
+                        clearInterval(interval)
+                    }
                 }, delay)
             }
         }
@@ -25,7 +30,7 @@ export const useAnimatedScale = () => {
 }
 
 export const useDimension = () => {
-    const [w, setW] = useStat(window.innerWidth)
+    const [w, setW] = useState(window.innerWidth)
     const [h, setH] = useState(window.innerHeight)
     useEffect(() => {
         window.onresize = () => {
@@ -36,6 +41,10 @@ export const useDimension = () => {
             
         }
     })
+    return {
+        w, 
+        h
+    }
 }
 
 const maxScale = (scale, i, n) => Math.max(0, scale - i / n)
@@ -55,7 +64,7 @@ export const useStyle = (w, h, scale) => {
             const top = `${(h / 2 - hSize / 2) * (1 + sf2)}px`
             const left = `${w / 2 - size / 2}px`
             const width = `${size}px`
-            const height = `${size}px`
+            const height = `${hSize}px`
             return {
                 position, 
                 top, 
