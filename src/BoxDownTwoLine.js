@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {useStyle} from './hooks'
 const Line = ({styleCb, i}) => {
     return (
         <div style = {styleCb(i)}>
